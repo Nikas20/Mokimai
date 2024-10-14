@@ -4,8 +4,154 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      div {
+        color: gray;
+        text-align: left;
+        padding-left: 200px;
+        max-height: 2px;
+      }
+      .rword {
+        font-weight: bold;
+      }
+      button {
+        background-color: rgb(206, 206, 206);
+        padding: 10px 20px;
+      }
+      body {
+        padding-inline: 20%;
+      }
+    </style>
   </head>
   <body>
-    <p style="color: green;">Hello forest</p>
+    <header>
+      <h1>Dance Registration</h1>
+      Fill the registration from below keenly to enterthe dancing competition.
+    </header>
+    <hr />
+    <main>
+      <article>
+        <form>
+          <div>
+            <div>
+              <input type="text" name="lasttname" />
+              <br />Last name
+            </div>
+            <input type="text" name="firstname" />
+            <br />First Name
+          </div>
+        </form>
+        <span class="rword">Name</span>
+      </article>
+      <br />
+      <br />
+      <article>
+        <form>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="ex: myname@example.com"
+            /><br />example@example.com
+          </div>
+          <span class="rword">E-mail</span>
+        </form>
+      </article>
+      <br />
+      <br />
+
+      <article>
+        <form>
+          <div>
+            <div>
+              <input type="text" name="Phone Number" /><br />Phone Number
+            </div>
+            <input type="text" name="Area Code" /> <br />
+            Area Code
+          </div>
+        </form>
+        <span class="rword">Phone Number</span>
+      </article>
+      <br />
+      <br />
+      <article>
+        <form>
+          <div>
+            <div>
+              <input type="radio" name="Gender" value="Female" /> Female
+            </div>
+            <input type="radio" name="Gender" value="Male" /> Male
+          </div>
+        </form>
+        <span class="rword">Gender</span>
+      </article>
+      <br />
+      <br />
+      <article>
+        <form>
+          <div>
+            <input type="text" name="Street Address" /><br />
+            Street Address <br />
+            <input type="text" name="Street Address Line 2" /><br />
+            Street Address Line 2 <br />
+            <div class="a">
+              <input type="text" name="State/ Province" /><br />
+              State/ Province <br />
+            </div>
+            <input type="text" name="City" /> <br />
+            City <br />
+            <input type="text" name="Postal/Zip Code" /><br />
+            Postal/Zip Code
+          </div>
+        </form>
+        <span class="rword">Address</span>
+      </article>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <hr />
+      <article>
+        <form>
+          <div style="color: black">
+            <input type="radio" name="dance" value="salsa" /> Salsa <br />
+            <input type="radio" name="dance" value="bachata" /> Bathata <br />
+            <input type="radio" name="dance" value="tango" /> Tango <br />
+            <input type="radio" name="dance" value="hip hop" /> Hip Hop <br />
+            <input type="radio" name="dance" value="club" /> Club <br />
+            <input type="radio" name="dance" value="other" />
+            <input type="text" name="other" placeholder="Other" />
+          </div>
+          <span class="rword">Type of Dance</span>
+        </form>
+      </article>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <article>
+        <form>
+          <div><input type="date" /> <input type="time" /></div>
+          <span class="rword">Start Day & <br />Time</span>
+        </form>
+      </article>
+      <br />
+      <article>
+        <form>
+          <div><textarea name="comments" rows="10" cols="75"></textarea></div>
+          <span class="rword">Comments</span>
+        </form>
+      </article>
+      <br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <div style="text-align: 200px;">
+      <button>Submit</button></div>
+    </main>
   </body>
 </html>
