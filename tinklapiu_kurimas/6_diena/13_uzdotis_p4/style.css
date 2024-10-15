@@ -1,0 +1,17 @@
+img{
+    width: 20%;
+}
+body{
+    padding: 20%;
+}
+.item1{grid-area: A;}
+.item2{grid-area: B;}
+.item3{grid-area: C;}
+.item4{grid-area: D;}
+.item5{grid-area: E;}
+.container{
+    display: grid;
+    grid-template-areas: 
+    'A B E'
+    'C D E';
+}

@@ -1,0 +1,21 @@
+img{
+    width: 20%;
+}
+body{
+    padding: 20%;
+}
+.givunas1{grid-area: A;}
+.givunas2{grid-area: B;}
+.givunas3{grid-area: C;}
+.givunas4{grid-area: D;}
+.givunas5{grid-area: E;}
+.container{
+    display: grid;
+    grid-template-areas: 
+    'A B C'
+    'A D E';
+}
+.container > main {
+    text-align: center;
+    font-size: 30px;
+  }

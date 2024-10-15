@@ -1,0 +1,13 @@
+img{width: 50%;}
+body{
+    padding: 20%;
+}
+.givunas1{grid-area: A;}
+.givunas2{grid-area: B;}
+.givunas3{grid-area: C;}
+.container{
+    display: grid;
+    grid-template-areas: 
+    'A B '
+    'A C';
+}
