@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+ nav p {display: inline-block;
+    padding: 20px;
+    padding-left: 10px;
+}
+nav{
+    background-color: purple;
+    color: white;
+    text-align: center;
+}
+h1{
+    color: purple;
+        font-family: "Imperial Script", cursive;
+        font-weight: 800;
+        font-style: normal;
+        padding-left: 40px;
+}
+.book{ 
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 48px;
+    text-shadow: 2px 2px 4px #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.word {
+    text-align: center;
+    font-size: 50px;
+    color: purple;
+}
+article div img{
+    width: 200px;
+    height: 200px;
+}
+@media screen and (min-width: 400px){
+    article{text-align: center;}
+    article ul{text-align: left;}
+    article div{
+        display: inline-block;
+    }
+}
