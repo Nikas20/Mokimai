@@ -22,7 +22,8 @@ h1{
         font-style: normal;
         padding-left: 40px;
 }
-.book{ 
+.Dogbook{ 
+    background-image: url(images/DogBook.jpg);
     background-size: cover;
     background-position: center;
     height: 600px;
