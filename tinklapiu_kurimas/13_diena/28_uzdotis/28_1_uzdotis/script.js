@@ -5,9 +5,11 @@ const antradenis = +prompt("Kiek pamoku yra antradeni?")
 const treciadenis = +prompt("Kiek pamoku yra treciadeni?")
 const ketvertadenis = +prompt("Kiek pamoku yra ketvertadeni?")
 const penktadenis = +prompt("Kiek pamoku yra penktadeni?")
-let sum_pamoku = (pirmadenis + antradenis  +treciadenis +ketvertadenis +penktadenis)
-const minut = (sum_pamoku * 45)
-const reslt1 = `Pamoku skaicius : ${sum_pamoku}`
-const reslt2 = `Tai sudaro minuciu: ${minut}`
-console.log(reslt1)
-console.log(reslt2)
+
+const sumPamoku = pirmadenis + antradenis  + treciadenis  +ketvertadenis + penktadenis
+const minuciuSuma = sumPamoku * 45
+
+const pamokuSuma = `Pamoku skaicius : ${sumPamoku}`
+const visoMinuciu = `Tai sudaro minuciu: ${minuciuSuma}`
+console.log(pamokuSuma)
+console.log(visoMinuciu)
