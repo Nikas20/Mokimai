@@ -6,4 +6,4 @@ const trapecijoosAukstinesIlgis = 4
 
 const trapecijosPlotas = trapecijoosAukstinesIlgis * 2 + trapecijoosIlgesniojoPagrindoIlgis + trapecijoosTrumpesniojoPagrindoIlgis
 
-console.log(`Trapecijos plotas: ${trapecijosPlotas}`)
+console.log(`Trapecijos plotas: ${trapecijosPlotas}`) 
