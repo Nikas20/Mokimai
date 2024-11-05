@@ -1,11 +1,11 @@
 "use strict"
 
-const  SausainiuIskepeTautvydas = +prompt('Kiek sausainiu iskepe Tautvydas?') 
+const  sausainiuIskepeTautvydas = +prompt('Kiek sausainiu iskepe Tautvydas?') 
 const keliDraugaiDarAtsinešePotiekPatSausainiu = +prompt('Keli draugai dar atsinese po tiek pat sausainiu?') 
 const zmoniuIsVisoDalyvavoSventeje = +prompt('Kiek žmoniu iš viso dalyvavo sventeje?') 
 
 
-const sausainiuIsViso = SausainiuIskepeTautvydas + keliDraugaiDarAtsinešePotiekPatSausainiu * SausainiuIskepeTautvydas
+const sausainiuIsViso = sausainiuIskepeTautvydas + keliDraugaiDarAtsinešePotiekPatSausainiu * sausainiuIskepeTautvydas
 const poKiekSauseiniuGavoKekvenas =  Math.trunc(sausainiuIsViso / zmoniuIsVisoDalyvavoSventeje)
 const kiekPapildomaiAtliekoSausainiu = sausainiuIsViso - poKiekSauseiniuGavoKekvenas * zmoniuIsVisoDalyvavoSventeje
 
