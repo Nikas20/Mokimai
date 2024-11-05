@@ -1,13 +1,13 @@
 "use strict"
 
-const  SausainiuIskepeTautvydas = +prompt('Kiek sausainių iškepė Tautvydas?') 
-const keliDraugaiDarAtsinešePotiekPatSausainiu = +prompt('Keli draugai dar atsinešė po tiek pat sausainių?') 
-const zmoniuIsVisoDalyvavoSventeje = +prompt('Kiek žmonių iš viso dalyvavo šventėje?') 
+const  SausainiuIskepeTautvydas = +prompt('Kiek sausainiu iskepe Tautvydas?') 
+const keliDraugaiDarAtsinešePotiekPatSausainiu = +prompt('Keli draugai dar atsinese po tiek pat sausainiu?') 
+const zmoniuIsVisoDalyvavoSventeje = +prompt('Kiek žmoniu iš viso dalyvavo sventeje?') 
 
 
 const sausainiuIsViso = SausainiuIskepeTautvydas + keliDraugaiDarAtsinešePotiekPatSausainiu * SausainiuIskepeTautvydas
 const poKiekSauseiniuGavoKekvenas =  Math.trunc(sausainiuIsViso / zmoniuIsVisoDalyvavoSventeje)
 const kiekPapildomaiAtliekoSausainiu = sausainiuIsViso - poKiekSauseiniuGavoKekvenas * zmoniuIsVisoDalyvavoSventeje
 
-console.log(`Kiekvienas sventės dalyvis gavo po ${poKiekSauseiniuGavoKekvenas} sausainius`) 
-console.log(`Tautvydui papildomai atiteko ${kiekPapildomaiAtliekoSausainiu} sausainiai`) 
+console.log(`Kiekvienas sventes dalyvis gavo po ${poKiekSauseiniuGavoKekvenas} sausainius`) 
+console.log(`Tautvydui papildomai atiteko ${kiekPapildomaiAtliekoSausainiu} sausainiai`)
