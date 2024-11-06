@@ -11,7 +11,7 @@ while (saldainiai > 0) {
   if (likoSaldainiiu > 0) {
     saldainiiuLiko = likoSaldainiiu;
     diena++;
-  } else if (likoSaldainiiu <= 0) {
+  } else if (likoSaldainiiu < 0) {
     break;
   }
 }
