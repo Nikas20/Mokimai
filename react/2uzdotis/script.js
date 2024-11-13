@@ -25,7 +25,7 @@ function calculate(num1, num2, operation){
     } 
     catch(error){console.error(error);}
 }
-console.log(calculate(10, 0, "+"));
+console.log(calculate(10, 2, "+"));
 console.log(calculate(10, 2, "/"));
 //console.log(calculate(10, 0, "/"));
 //console.log(calculate(10, 2, "&"));
