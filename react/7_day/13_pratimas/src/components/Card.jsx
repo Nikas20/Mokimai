@@ -11,13 +11,12 @@ export default function Card() {
           Some quick example text to build on the card title and make up the
           bulk of the card's content
         </p>
-        <a
-          href="#"
+        <button
           onClick={() => setTaskDone(!taskDone)}
           className={taskDone ? "btn btn-success" : "btn btn-danger"}
         >
           {taskDone ? "Done" : "Mark as done"}
-        </a>
+        </button>
       </div>
     </div>
   );
