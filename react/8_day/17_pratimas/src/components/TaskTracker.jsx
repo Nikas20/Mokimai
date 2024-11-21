@@ -1,10 +1,13 @@
+import TaskList from "./TaslList";
 import { useState } from "react";
 
-export default function TaskTracker(props) {
+
+export default function TaskTracker() {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (newTask) => {
-    setTasks([...tasks, { text: newTask, completed: false }]);
+  const addTask = () => {
+    const editTask = prompt("Enter a task:");
+    setTasks([...tasks, { text: editTask, completed: false }]);
   };
 
   const toggleComplete = (index) => {
@@ -14,25 +17,27 @@ export default function TaskTracker(props) {
 
     setTasks(updatedTasks);
   };
-  console.log(tasks);
+
+  const deleteTask = (index) => {
+    const areYouSure = confirm("Are you sure?");
+    if (areYouSure) {
+      const updatedTasks = tasks.filter((task, i) => i !== index);
+
+      setTasks(updatedTasks);
+    }
+  };
 
   return (
-    
-    <ul>
-        <h1 >Task Tracker</h1>
-      <button onClick={() => addTask(prompt(props.question))}>Add Task</button>  
-      {tasks.map((task, index) => (
-        <li key={index}>
-          <span
-            style={{ textDecoration: task.completed ? "line-through" : "none" }}
-          >
-            {task.text}
-          </span>
-          <button onClick={() => toggleComplete(index)}>{task.completed ? "Undo" : "Done"}</button>
-        </li>
-      ))}
-    </ul>
-
-//<div className="row">{postsList.length ? postsList : "Empty"}</div>;
+    <div className= "position-absolute top-0 start-0">
+      <h1>Task Tracker</h1>
+      <button className="btn btn-success m-1" onClick={addTask}>
+        Add a task
+      </button>
+      <TaskList
+        tasks={tasks}
+        toggleComplete={toggleComplete}
+        deleteTask={deleteTask}
+      />
+    </div>
   );
 }

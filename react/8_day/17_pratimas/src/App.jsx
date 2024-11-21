@@ -1,12 +1,13 @@
-import TaskTracker from "./components/TaskTracker";
+import { useState } from 'react'
+import './App.css'
+import TaskTracker from './components/TaskTracker'
 
-export default function App() {
+function App() {
   return (
     <>
-      <TaskTracker 
-      question = "Enter a task"
-      />
+      <TaskTracker/>
     </>
-  );
+  )
 }
 
+export default App
