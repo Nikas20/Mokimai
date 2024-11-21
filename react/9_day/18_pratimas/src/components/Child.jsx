@@ -1,6 +1,8 @@
 export default function Child({text}) {
 
-    return text.map((list) => <ul><li>{list}</li></ul>)
+    return <ul> 
+        {text.map((list) => <li>{list}</li>)}
+    </ul>
     
     
 }
