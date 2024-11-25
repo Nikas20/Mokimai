@@ -34,6 +34,7 @@ export default function Form() {
           {...register("name",{required: true,pattern: /^[A-Z][a-z]+$/ })}
         />
         {errors.name?.type === "required" && <p>Name field cannot be empty</p>}
+        {errors.name?.type === "pattern" && <p>Name must start with an uppercase letter</p>}
       </div>
 
       <div className="mb-3">
@@ -50,6 +51,8 @@ export default function Form() {
           {...register("type",{required: true, minLength: 2, maxLength: 50})}
         />
         {errors.type?.type === "required" && <p>Type field cannot be empty</p>}
+        {errors.type?.type === "minLength" && <p>Field must be more than 1</p>}
+        {errors.type?.type === "maxLength" && <p>Field must be less than 51</p>}
       </div>
 
       <div className="mb-3">
@@ -66,6 +69,8 @@ export default function Form() {
           {...register("breed", {required: true, minLength: 5, maxLength: 100, pattern: /^[A-Z][a-z]+$/ })}
         />
         {errors.breed?.type === "required" && <p>Breed field cannot be empty</p>}
+        {errors.breed?.type === "minLength" && <p>Field must be more than 4 simbols</p>}
+        {errors.breed?.type === "maxLength" && <p>Field must be less than 101 simbols</p>}
       </div>
 
       <div className="mb-3">
@@ -82,6 +87,8 @@ export default function Form() {
           {...register("age", {required: true, min: 1, max: 100})}
         />
         {errors.age?.type === "required" && <p>Age field cannot be empty</p>}
+        {errors.age?.type === "min" && <p>Field must be more than 0</p>}
+        {errors.age?.type === "max" && <p>Field must be less than 101</p>}
       </div>
 
       <div className="mb-3">
@@ -98,6 +105,7 @@ export default function Form() {
           className="form-control"
           {...register("weight",{min:0.05})}
         />
+        {errors.age?.type === "min" && <p>Field must be more than 0.04</p>}
       </div>
 
       <div className="mb-3">
