@@ -5,7 +5,7 @@ function App() {
   return (<>
     <Routes>
         <Route
-        path="/users"
+        path="/"
         element={<Home/>}
         />
         <Route
