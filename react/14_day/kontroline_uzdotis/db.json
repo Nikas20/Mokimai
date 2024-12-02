@@ -1,0 +1,20 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "Etaa",
+      "author": "Faaf",
+      "category": "Drama",
+      "price": "2,22",
+      "cover": "ffs"
+    },
+    {
+      "title": "Varvik",
+      "author": "Areqr",
+      "category": "Drama",
+      "price": "66.4",
+      "cover": "https://m.media-amazon.com/images/I/711QR2AEfVL._AC_UF894,1000_QL80_.jpg",
+      "id": "df30"
+    }
+  ]
+}

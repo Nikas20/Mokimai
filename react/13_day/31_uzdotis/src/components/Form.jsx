@@ -49,10 +49,10 @@ export default function Form() {
           Due date
         </label>
         <input
-          type="date"
+          type="text"
           id="date"
           className="form-control"
-          {...register("date", { required: true, valueAsDate:Date.getDate})}
+          {...register("date")}
           
         />
       </div>

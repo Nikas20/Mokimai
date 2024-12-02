@@ -72,7 +72,7 @@ export default function EditTask() {
         Due date
         </label>
         <input
-          type="date"
+          type="text"
           id="date"
           className="form-control"
           {...register("date", { required: true, valueAsDate:true})}
