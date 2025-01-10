@@ -32,11 +32,29 @@ public class AdvancedAstrology {
 
     public static void christmasTree(int height) {
         // part 3 of the exercise
+        int empt = height;
+        int star = 1;
+        for (int i = 1; i <= height; i++) {
+            empt = empt - 1;
+            printSpaces(empt);
+            printStars(star);
+            star += 2;
+            printSpaces(empt);
+            System.out.println("");
+        }
+        int empt2 = height - 2;
+        int star2 = 3;
+        for (int i = 1; i <= 2; i++) {
+            printSpaces(empt2);
+            printStars(star2);
+            printSpaces(empt2);
+            System.out.println("");
+        }
     }
 
     public static void main(String[] args) {
         // The tests are not checking the main, so you can modify it freely.
-
+        
         printTriangle(5);
         System.out.println("---");
         christmasTree(4);
