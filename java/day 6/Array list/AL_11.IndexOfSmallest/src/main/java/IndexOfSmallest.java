@@ -31,6 +31,10 @@ public class IndexOfSmallest {
             }
         }
         System.out.println("Smalest number: " + min);
-        System.out.println("Found at index: " + list.indexOf(min));
+        for (int i = 0; i < list.size(); i++) {
+            if (min == list.get(i)) {
+                System.out.println("Found at index: " + i);
+            }
+        }
     }
 }
