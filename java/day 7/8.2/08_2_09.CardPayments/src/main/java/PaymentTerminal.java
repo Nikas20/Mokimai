@@ -23,7 +23,7 @@ public class PaymentTerminal {
             return payment - 2.5;
 
         } else {
-            return 0;
+            return payment;
         }
     }
 
@@ -31,7 +31,6 @@ public class PaymentTerminal {
         if (card.balance() - 2.5 >= 0) {
             this.affordableMeals++;
             card.takeMoney(2.5);
-            this.money = this.money + card.balance() + 2.5;
             return true;
         } else {
             return false;
@@ -47,7 +46,7 @@ public class PaymentTerminal {
             this.money = this.money + 4.3;
             return payment - 4.3;
         } else {
-            return 0;
+            return payment;
         }
     }
 
@@ -55,7 +54,6 @@ public class PaymentTerminal {
         if (card.balance() - 4.3 >= 0) {
             this.heartyMeals++;
             card.takeMoney(4.3);
-            this.money = this.money + card.balance() + 4.3;
             return true;
         } else {
             return false;
@@ -63,8 +61,9 @@ public class PaymentTerminal {
     }
 
     public void addMoneyToCard(PaymentCard card, double sum) {
+        if(sum > 0){
         card.addMoney(sum);
-        this.money = this.money + card.balance();
+        this.money = this.money + sum;}
     }
 
     @Override
