@@ -1,0 +1,17 @@
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        // You can test your program here
+        
+        BoxWithMaxWeight coffeeBox = new BoxWithMaxWeight(10);
+        coffeeBox.add(new Item("Saludo", 5));
+        coffeeBox.add(new Item("Pirkka", 5));
+        coffeeBox.add(new Item("Kopi luwak", 5));
+
+        System.out.println(coffeeBox.isInBox(new Item("Saluko")));
+        System.out.println(coffeeBox.isInBox(new Item("Pirkka")));
+        System.out.println(coffeeBox.isInBox(new Item("Kopi luwak")));
+    }
+}
