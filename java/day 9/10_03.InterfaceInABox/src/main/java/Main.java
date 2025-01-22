@@ -3,7 +3,7 @@ public class Main {
 
     public static void main(String[] args) {
         // test your classes here
-        Box box = new Box(10);
+//        Box box = new Box(10);
 
 //        box.add(new Book("Fyodor Dastoevsky", "Crime and Punishment", 2));
 //        box.add(new Book("Robert Martin", "Clean Code", 1));
@@ -12,8 +12,16 @@ public class Main {
 //        box.add(new CD("Pink Floyd", "Dark Side of the Moon", 1973));
 //        box.add(new CD("Wigwam", "Nuclear Nightclub", 1975));
 //        box.add(new CD("Rendezvous Park", "Closer to Being Here", 2012));
+//
+//        System.out.println(box);
 
+        Box bigBox = new Box(20);
+        Box box = new Box(10);
+        bigBox.add(box);
+        box.add(new Book("Horstman", "Core Java", 5));
+        bigBox.weight();
         System.out.println(box);
+        System.out.println(bigBox);
     }
 
 }

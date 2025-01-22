@@ -4,18 +4,16 @@ public class Box implements Packable {
     private double maxweight;
     private ArrayList<Packable> items;
 
-
     public Box(double maxweight) {
         this.maxweight = maxweight;
-        this.items = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public void add(Packable item) {
-        if (maxweight > items.get(items.indexOf(item)).weight()) {
+        if (maxweight >= item.weight()) {
             items.add(item);
-            maxweight = maxweight - items.get(items.indexOf(item)).weight();
+            maxweight = maxweight - item.weight();
         }
-
     }
 
     @Override
@@ -26,8 +24,8 @@ public class Box implements Packable {
     @Override
     public double weight() {
         double weight = 0;
-        for (int i = 0; i < items.size(); i++) {
-            weight = weight + items.get(i).weight();
+        for (Packable item : items) {
+            weight = weight + item.weight();
         }
         return weight;
     }
