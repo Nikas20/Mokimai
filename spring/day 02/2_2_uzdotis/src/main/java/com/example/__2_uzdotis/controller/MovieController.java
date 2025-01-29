@@ -21,7 +21,7 @@ public class MovieController {
     return ResponseEntity.ok(movies);
   }
 
-  @GetMapping("/movies/{index}")
+  @GetMapping("/movies/{id}")
   public ResponseEntity<Movie> getMovie(@PathVariable int id) {
     if (id > movies.size() - 1) {
       return ResponseEntity.notFound().build();
