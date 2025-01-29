@@ -7,12 +7,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MovieController {
 
   List<Movie> movies = new ArrayList<>(List.of(
-          new Movie("Catwar", "Tom")
+          new Movie(0, "Catwar", "Tom")
   ));
 
   @GetMapping("/movies")
@@ -21,11 +22,11 @@ public class MovieController {
   }
 
   @GetMapping("/movies/{index}")
-  public ResponseEntity<Movie> getMovie(@PathVariable int index) {
-    if (index > movies.size() - 1) {
+  public ResponseEntity<Movie> getMovie(@PathVariable int id) {
+    if (id > movies.size() - 1) {
       return ResponseEntity.notFound().build();
     }
-    return ResponseEntity.ok(movies.get(index));
+    return ResponseEntity.ok(movies.get(id));
   }
 
   @PostMapping("/movies")
@@ -38,9 +39,20 @@ public class MovieController {
 
     return ResponseEntity.created(
                     ServletUriComponentsBuilder.fromCurrentRequest()
-                            .path("/{index}")
+                            .path("/{id}")
                             .buildAndExpand(movies.size() - 1)
                             .toUri())
             .body(movie);
+  }
+
+  @GetMapping("/movies/search")
+  public ResponseEntity<Movie> getMovieByTitle(@RequestParam String title) {
+    Optional<Movie> searchMovie = movies.stream()
+            .filter((mov) -> mov.getTitle().contains(title))
+            .findAny();
+    if (searchMovie.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(searchMovie.get());
   }
 }
