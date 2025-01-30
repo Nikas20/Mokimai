@@ -24,4 +24,5 @@ public class MovieController {
   public ResponseEntity<List<Movie>> getMovies() {
     return ResponseEntity.ok(movieService.findAllMovies());
   }
+  GetMapping(/m)
 }
