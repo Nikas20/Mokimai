@@ -13,7 +13,6 @@ import java.util.Optional;
 public class MovieController {
 
   List<Movie> movies = new ArrayList<>(List.of(
-          new Movie(0, "Cat", "sit")
   ));
 
   @GetMapping("/movies")
