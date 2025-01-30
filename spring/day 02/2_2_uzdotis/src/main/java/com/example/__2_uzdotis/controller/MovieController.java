@@ -13,7 +13,7 @@ import java.util.Optional;
 public class MovieController {
 
   List<Movie> movies = new ArrayList<>(List.of(
-          new Movie(0, "Catwar", "Tom")
+          new Movie(0, "Cat", "sit")
   ));
 
   @GetMapping("/movies")
@@ -27,6 +27,17 @@ public class MovieController {
       return ResponseEntity.notFound().build();
     }
     return ResponseEntity.ok(movies.get(id));
+  }
+
+  @GetMapping("/movies/search")
+  public ResponseEntity<Movie> getMovieByTitle(@RequestParam String title) {
+    Optional<Movie> searchMovie = movies.stream()
+            .filter((mov) -> mov.getTitle().contains(title))
+            .findFirst();
+    if (searchMovie.isEmpty()) {
+      return ResponseEntity.ok().build();
+    }
+    return ResponseEntity.ok(searchMovie.get());
   }
 
   @PostMapping("/movies")
@@ -43,16 +54,5 @@ public class MovieController {
                             .buildAndExpand(movies.size() - 1)
                             .toUri())
             .body(movie);
-  }
-
-  @GetMapping("/movies/search")
-  public ResponseEntity<Movie> getMovieByTitle(@RequestParam String title) {
-    Optional<Movie> searchMovie = movies.stream()
-            .filter((mov) -> mov.getTitle().contains(title))
-            .findAny();
-    if (searchMovie.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
-    return ResponseEntity.ok(searchMovie.get());
   }
 }
