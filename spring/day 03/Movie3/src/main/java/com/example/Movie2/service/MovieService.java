@@ -22,4 +22,21 @@ public class MovieService {
   public List<Movie> findAllMovies() {
     return movieRepository.findAll();
   }
+
+  public Optional<Movie> findMovie(long id) {
+    return movieRepository.findById(id);
+  }
+
+  public Movie saveMovie(Movie movie) {
+    return movieRepository.save(movie);
+  }
+
+  public boolean existsMovieById(long id) {
+    return movieRepository.existsById(id);
+  }
+
+  public void deleteMovieById(long id) {
+    movieRepository.deleteById(id);
+  }
+
 }
