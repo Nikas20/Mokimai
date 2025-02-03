@@ -9,7 +9,7 @@ export default function Register() {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:3001/books", {
+      const response = await fetch("http://localhost:8080/books", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

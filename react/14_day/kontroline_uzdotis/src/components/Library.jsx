@@ -10,7 +10,7 @@ export default function Library() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/books");
+        const response = await fetch("http://localhost:8080/books");
         const data = await response.json();
 
         setData(data);

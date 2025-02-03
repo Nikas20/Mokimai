@@ -14,7 +14,7 @@ export default function BookEdit() {
     const fetchData = async () => {
       try {
         
-        const response = await fetch(`http://localhost:3001/books/${id}`);
+        const response = await fetch(`http://localhost:8080/books/${id}`);
         const data = await response.json();
 
         setData(data);
@@ -28,7 +28,7 @@ export default function BookEdit() {
   }, []);
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(`http://localhost:3001/books/${id}`, {
+      const response = await fetch(`http://localhost:8080/books/${id}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
