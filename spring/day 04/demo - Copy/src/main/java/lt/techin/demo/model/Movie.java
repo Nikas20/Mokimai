@@ -13,14 +13,15 @@ public class Movie {
           GenerationType.IDENTITY)
   private long id;
 
+  // Kai One to many, galima uzdeti CascadeType.ALL
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_movies")
-  private List<Screenings> screenings;
+  private List<Screening> screenings;
 
   private String title;
   private String author;
 
-  public Movie(String title, String author, List<Screenings> screenings) {
+  public Movie(String title, String author, List<Screening> screenings) {
     this.title = title;
     this.author = author;
     this.screenings = screenings;
@@ -49,11 +50,11 @@ public class Movie {
     this.author = author;
   }
 
-  public List<Screenings> getScreenings() {
+  public List<Screening> getScreenings() {
     return screenings;
   }
 
-  public void setScreenings(List<Screenings> screenings) {
+  public void setScreenings(List<Screening> screenings) {
     this.screenings = screenings;
   }
 }
