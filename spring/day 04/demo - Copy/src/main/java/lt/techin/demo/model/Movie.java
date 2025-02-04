@@ -18,12 +18,22 @@ public class Movie {
   @JoinColumn(name = "id_movies")
   private List<Screening> screenings;
 
+  @ManyToMany
+  @JoinTable(
+          name = "movies_actors",
+          joinColumns = @JoinColumn(name = "id_movies"),
+          inverseJoinColumns = @JoinColumn(name = "id_actors")
+  )
+  private List<Actor> actors;
+
+
   private String title;
   private String author;
 
-  public Movie(String title, String author, List<Screening> screenings) {
+  public Movie(String title, String author, List<Screening> screenings, List<Actor> actors) {
     this.title = title;
     this.author = author;
+    this.actors = actors;
     this.screenings = screenings;
   }
 
@@ -56,5 +66,13 @@ public class Movie {
 
   public void setScreenings(List<Screening> screenings) {
     this.screenings = screenings;
+  }
+
+  public List<Actor> getActors() {
+    return actors;
+  }
+
+  public void setActors(List<Actor> actors) {
+    this.actors = actors;
   }
 }
