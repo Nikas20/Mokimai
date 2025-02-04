@@ -14,12 +14,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class ActorController {
 
   private ActorSevice actorSevice;
+
   @Autowired
-  public ActorController(ActorSevice actorSevice){
+  public ActorController(ActorSevice actorSevice) {
     this.actorSevice = actorSevice;
   }
 
-  @PostMapping("/categories")
+  @PostMapping("/actors")
   public ResponseEntity<?> addActor(@RequestBody Actor actor) {
 
     Actor savedActor = actorSevice.saveActor(actor);

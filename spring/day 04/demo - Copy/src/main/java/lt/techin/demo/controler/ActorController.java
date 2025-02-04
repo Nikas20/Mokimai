@@ -18,7 +18,7 @@ public class ActorController {
     this.actorSevice = actorSevice;
   }
 
-  @PostMapping("/categories")
+  @PostMapping("/actors")
   public ResponseEntity<?> addActor(@RequestBody Actor actor) {
 
     Actor savedActor = actorSevice.saveActor(actor);
