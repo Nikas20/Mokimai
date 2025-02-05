@@ -1,6 +1,7 @@
 package lt.techin.demo.controler;
 
 import jakarta.validation.Valid;
+import lt.techin.demo.dto.MovieDTO;
 import lt.techin.demo.model.Movie;
 import lt.techin.demo.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class MovieController {
   }
 
   @GetMapping("/movies")
-  public ResponseEntity<List<Movie>> getMovies() {
+  public ResponseEntity<List<MovieDTO>> getMovies() {
     return ResponseEntity.ok(movieService.findAllMovies());
   }
 

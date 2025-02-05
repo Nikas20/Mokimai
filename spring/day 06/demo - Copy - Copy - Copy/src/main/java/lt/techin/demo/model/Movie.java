@@ -9,37 +9,21 @@ import java.util.List;
 @Entity
 @Table(name = "movies")
 public class Movie {
-
   @Id
   @GeneratedValue(strategy =
           GenerationType.IDENTITY)
   private long id;
-
-  // Kai One to many, galima uzdeti CascadeType.ALL
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_movies")
-  @NotNull
   private List<Screening> screenings;
-
   @ManyToMany
   @JoinTable(
           name = "movies_actors",
           joinColumns = @JoinColumn(name = "id_movies"),
           inverseJoinColumns = @JoinColumn(name = "id_actors")
   )
-  @NotNull
   private List<Actor> actors;
-
-  @NotBlank
-  @NotEmpty
-  @NotNull
-  @Size(min = 2, max = 150)
   private String title;
-
-  @NotEmpty
-  @NotNull
-  @Size(min = 2, max = 50)
-  @Pattern(regexp = "^[A-Z][A-z]+$", message = "Must start with uppercase letter, and continue as lowercase" + "and no numbers")
   private String director;
 
   public Movie(String title, String director, List<Screening> screenings, List<Actor> actors) {
