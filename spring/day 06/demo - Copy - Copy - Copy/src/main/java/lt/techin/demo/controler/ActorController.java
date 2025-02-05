@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 public class ActorController {
 
-  private ActorSevice actorSevice;
+  private final ActorSevice actorSevice;
 
   @Autowired
   public ActorController(ActorSevice actorSevice) {
