@@ -6,7 +6,6 @@ import lt.techin.demo.dto.MovieMapper;
 import lt.techin.demo.model.Movie;
 import lt.techin.demo.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,36 +39,37 @@ public class MovieController {
   }
 
   @PostMapping("/movies")
-  public ResponseEntity<?> saveMovie(@Valid @RequestBody Movie movie) {
-    Movie mov = movieService.saveMuvie(movie);
+  public ResponseEntity<?> saveMovie(@Valid @RequestBody MovieDTO movieDTO) {
+    Movie mov = movieService.saveMovie(MovieMapper.toMovie(movieDTO));
 
     return ResponseEntity.created(
                     ServletUriComponentsBuilder.fromCurrentRequest()
                             .path("/{id}")
                             .buildAndExpand(mov.getId())
                             .toUri())
-            .body(movie);
+            .body(MovieMapper.toMovieDTO(mov));
   }
 
   @PutMapping("/movies/{id}")
-  public ResponseEntity<?> updateMovie(@PathVariable long id, @Valid @RequestBody Movie movie) {
+  public ResponseEntity<?> updateMovie(@PathVariable long id, @Valid @RequestBody MovieDTO movieDTO) {
 
     if (movieService.existsMovieById(id)) {
       Movie movieF = movieService.findMovie(id).get();
 
-      movieF.setTitle(movie.getTitle());
-      movieF.setDirector(movie.getDirector());
+      MovieMapper.updateMovieFromDTO(movieF, movieDTO);
 
-      return ResponseEntity.ok((movieService.saveMuvie(movieF)));
+      movieService.saveMovie(movieF);
+
+      return ResponseEntity.ok((movieService.saveMovie(movieF)));
     }
-    Movie savedMovie = movieService.saveMuvie(movie);
+    Movie savedMovie = movieService.saveMovie(MovieMapper.toMovie(movieDTO));
 
     return ResponseEntity.created(
                     ServletUriComponentsBuilder.fromCurrentRequest()
-                            .replacePath("/movie/{id}")
+                            .replacePath("/movies/{id}")
                             .buildAndExpand(savedMovie.getId())
                             .toUri())
-            .body(movie);
+            .body(movieDTO);
   }
 
   @DeleteMapping("/movies/{id}")
