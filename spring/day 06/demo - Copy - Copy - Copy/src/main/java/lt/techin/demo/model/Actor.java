@@ -12,12 +12,7 @@ public class Actor {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @Size(min = 2, max = 50)
-  @Name
   private String firstName;
-
-  @Size(min = 2, max = 50)
-  @Name
   private String lastName;
 
   public Actor() {

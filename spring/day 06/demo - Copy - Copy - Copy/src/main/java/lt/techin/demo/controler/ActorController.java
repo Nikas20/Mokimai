@@ -1,6 +1,8 @@
 package lt.techin.demo.controler;
 
 import jakarta.validation.Valid;
+import lt.techin.demo.dto.ActorDTO;
+import lt.techin.demo.dto.ActorMapper;
 import lt.techin.demo.model.Actor;
 import lt.techin.demo.service.ActorSevice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +24,15 @@ public class ActorController {
   }
 
   @PostMapping("/actors")
-  public ResponseEntity<?> addActor(@Valid @RequestBody Actor actor) {
+  public ResponseEntity<?> addActor(@Valid @RequestBody ActorDTO actorDTO) {
 
-    Actor savedActor = actorSevice.saveActor(actor);
+    Actor savedActor = actorSevice.saveActor(ActorMapper.toActor(actorDTO));
 
     return ResponseEntity.created(
                     ServletUriComponentsBuilder.fromCurrentRequest()
                             .path("/{id}")
                             .buildAndExpand(savedActor.getId())
                             .toUri())
-            .body(savedActor);
+            .body(ActorMapper.toActorDTO(savedActor));
   }
 }

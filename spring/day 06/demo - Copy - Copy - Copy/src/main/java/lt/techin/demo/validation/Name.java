@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = NameValidator.class)
 public @interface Name {
 
-  String mesage() default "FIrstName cannot be null, and must start with uppercase letters, and " +
+  String message() default "FIrstName cannot be null, and must start with uppercase letters, and " +
           "continue with lowecase letters";
 
   Class<?>[] groups() default {};
