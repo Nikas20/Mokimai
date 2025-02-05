@@ -30,13 +30,13 @@ public class MovieController {
   }
 
   @GetMapping("/movies/{id}")
-  public ResponseEntity<Movie> getMovie(@PathVariable long id) {
+  public ResponseEntity<MovieDTO> getMovie(@PathVariable long id) {
     Optional<Movie> movieFind = movieService.findMovie(id);
 
     if (movieFind.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
-    return ResponseEntity.ok(movieFind.get());
+    return ResponseEntity.ok(MovieMapper.toMovieDTO(movieFind.get()));
   }
 
   @PostMapping("/movies")
@@ -51,7 +51,7 @@ public class MovieController {
             .body(movie);
   }
 
-  @PutMapping("/movie/{id}")
+  @PutMapping("/movies/{id}")
   public ResponseEntity<?> updateMovie(@PathVariable long id, @Valid @RequestBody Movie movie) {
 
     if (movieService.existsMovieById(id)) {
@@ -72,7 +72,7 @@ public class MovieController {
             .body(movie);
   }
 
-  @DeleteMapping("/movie/{id}")
+  @DeleteMapping("/movies/{id}")
   public ResponseEntity<?> deleteMovie(@PathVariable long id) {
 
     if (!movieService.existsMovieById(id)) {
