@@ -11,27 +11,50 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
+
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf((c) -> c.disable())
+        http
+
+                .csrf(c -> c.disable())
+
                 .httpBasic(Customizer.withDefaults())
+
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/users/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users/{id}").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/users/{id}").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE, "/users/{id}").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/movies").hasRole("USER")
+
+                        .requestMatchers(HttpMethod.GET, "/movies/{id}").hasRole("USER")
+
+                        .requestMatchers(HttpMethod.POST, "/movies").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.PUT, "/movies/{id}").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE, "/movies/{id}").hasRole("ADMIN")
+
+                        .anyRequest().authenticated()
                 );
+
         return http.build();
     }
 
     @Bean
-
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
