@@ -1,6 +1,7 @@
 package lt.techin.demo.model;
 
 import jakarta.persistence.*;
+import lt.techin.demo.validation.Name;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
@@ -13,11 +14,8 @@ public class Role implements GrantedAuthority {
 
   private String name;
 
-  public Role(String name) {
-    this.name = name;
-  }
-
   public Role() {
+
   }
 
   public long getId() {
@@ -32,7 +30,6 @@ public class Role implements GrantedAuthority {
     this.name = name;
   }
 
-  // SPRINGUI nurodome, kas yra rolės stulpelis
   @Override
   public String getAuthority() {
     return name;

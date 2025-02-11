@@ -1,6 +1,7 @@
 package lt.techin.demo.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.DialectOverride;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,10 +18,6 @@ public class User implements UserDetails {
 
     private String username;
     private String password;
-
-    // Default yra LAZY
-    // Reikia EAGER, nes nespėja Spring Security pasiekti rolių,
-    // nes užsidaro session
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -28,13 +25,6 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles;
-
-
-    public User(String username, String password, List<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
 
     public User() {
     }
