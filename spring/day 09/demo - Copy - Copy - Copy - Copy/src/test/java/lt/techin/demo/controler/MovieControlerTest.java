@@ -202,5 +202,47 @@ public class MovieControlerTest {
                         .content(objectMapper.writeValueAsString(movie)))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    @WithMockUser(authorities = "ROLE_USER")
+    void addMovie_whenUserAddBook_thenReturnAnd401() throws Exception {
+
+        Movie movie1 = new Movie("Foodforthoughtessaysandruminations",
+                "Cattos",
+                List.of(),
+                List.of());
+
+        given(movieService.saveMovie(ArgumentMatchers.any(Movie.class))).willReturn(movie1);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/movies")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(movie1)))
+                .andExpect(status().isUnauthorized());
+
+        Mockito.verify(movieService, times(0)).saveMovie(ArgumentMatchers.any(Movie.class));
+    }
+
+    @Test
+    @WithAnonymousUser
+    void addMovie_whenUnauthenticatedAddBook_thenReturnAnd401() throws Exception {
+
+        Movie movie1 = new Movie("Foodforthoughtessaysandruminations",
+                "Cattos",
+                List.of(),
+                List.of());
+
+        given(movieService.saveMovie(ArgumentMatchers.any(Movie.class))).willReturn(movie1);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/movies")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(movie1)))
+                .andExpect(status().isUnauthorized());
+
+        Mockito.verify(movieService, times(0)).saveMovie(ArgumentMatchers.any(Movie.class));
+    }
 }
 
