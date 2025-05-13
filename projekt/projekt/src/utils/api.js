@@ -1,22 +1,25 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-});
+    baseURL: import.meta.env.VITE_API_URL
+})
 
-export const setAuth = (jwt) => {
-  api.defaults.headers = {
-    Authorization: `Bearer ${jwt}`,
-  };
-};
+export const setAuth = (email, password) => {
+    api.defaults.auth = {
+        email,
+        password
+    }
+}
 
 export const clearAuth = () => {
-  delete api.defaults.headers;
-};
+    delete api.defaults.auth;
+}
 
-const maybeJwt = localStorage.getItem("jwt");
-if (maybeJwt) {
-  setAuth(maybeJwt);
+const maybeUser = localStorage.getItem("user");
+
+if (maybeUser) {
+    const user = JSON.parse(maybeUser);
+    setAuth(user.email, user.password);
 }
 
 export default api;
