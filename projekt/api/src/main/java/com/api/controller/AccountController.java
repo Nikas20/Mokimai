@@ -5,6 +5,7 @@ import com.api.dto.AccountRequestDTO;
 import com.api.dto.AccountRequestMapper;
 import com.api.dto.AccountResponseMapper;
 import com.api.model.Account;
+import com.api.model.Role;
 import com.api.service.AccountService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -42,7 +45,6 @@ public class AccountController {
 
     Account account = AccountRequestMapper.toAccount(accountRequestDTO);
     account.setPassword(passwordEncoder.encode(account.getPassword()));
-
     Account savedAccount = accountService.saveAccount(account);
 
     return ResponseEntity.created(

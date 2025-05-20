@@ -17,6 +17,4 @@ public record AccountRequestDTO(
         String password,
         @NotEmpty(message = "Account needs to have roles!")
         List<RoleDTO> roles) {
-
-
 }
