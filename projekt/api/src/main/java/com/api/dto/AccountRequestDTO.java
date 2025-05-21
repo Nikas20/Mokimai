@@ -14,7 +14,5 @@ public record AccountRequestDTO(
         String email,
         @NotNull(message = "Password can not be null!")
         @Length(min = 6, max = 255, message = "Your password is either too short or too long! Min length is 6, max is 255 symbols")
-        String password,
-        @NotEmpty(message = "Account needs to have roles!")
-        List<RoleDTO> roles) {
+        String password) {
 }

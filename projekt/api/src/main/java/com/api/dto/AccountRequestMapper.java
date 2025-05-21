@@ -12,7 +12,6 @@ public class AccountRequestMapper {
 
     account.setEmail(accountRequestDTO.email());
     account.setPassword(accountRequestDTO.password());
-    account.setRoles(new ArrayList<>(RoleMapper.toRoleListFromDTO(accountRequestDTO.roles())));
 
     return account;
   }

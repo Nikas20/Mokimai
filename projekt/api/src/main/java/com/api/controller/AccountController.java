@@ -44,8 +44,13 @@ public class AccountController {
     }
 
     Account account = AccountRequestMapper.toAccount(accountRequestDTO);
+
+
     account.setPassword(passwordEncoder.encode(account.getPassword()));
+    account.setRoles(List.of(new Role("USER", 1)));
+
     Account savedAccount = accountService.saveAccount(account);
+
 
     return ResponseEntity.created(
                     ServletUriComponentsBuilder.fromCurrentRequest()
