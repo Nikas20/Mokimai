@@ -3,6 +3,7 @@ package com.api.controller;
 
 import com.api.dto.AccountRequestDTO;
 import com.api.dto.AccountRequestMapper;
+import com.api.dto.AccountResponseDTO;
 import com.api.dto.AccountResponseMapper;
 import com.api.model.Account;
 import com.api.model.Role;
@@ -13,13 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -58,5 +57,16 @@ public class AccountController {
                             .buildAndExpand(savedAccount.getId())
                             .toUri())
             .body(AccountResponseMapper.toAccountResponseDTO(savedAccount));
+  }
+
+  @GetMapping("/auth")
+  public ResponseEntity<AccountResponseDTO> login(@RequestParam String email, @RequestParam String password) {
+
+    Optional<Account> account = accountService.findByEmail(email);
+
+
+
+
+    return ResponseEntity.ok(AccountResponseMapper.toAccountResponseDTO(account.orElse(null)));
   }
 }

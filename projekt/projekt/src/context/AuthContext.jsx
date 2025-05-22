@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         // Paduodas email ir password axios
         setAuth(email, password);
         // Pasiimam priskirtas roles iš serverio
-        const response = await api.get("/auth/me");
+        const response = await api.get("/auth");
         const userData = response.data
 
         // Sujungiam įrašyta email ir password su iš db gaunamomis roles
@@ -47,11 +47,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        setUser({});
+        setUser(null);
         // Ištrinam email ir password iš axios
         clearAuth();
         localStorage.removeItem("user");
-        navigate("/login");
+        navigate("/home");
     };
 
     return (
