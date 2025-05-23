@@ -22,24 +22,28 @@ export const AuthProvider = ({ children }) => {
     });
 
     const login = async (email, password) => {
-        // Paduodas email ir password axios
-        setAuth(email, password);
-        // Pasiimam priskirtas roles iš serverio
-        const response = await api.get("/auth");
-        const userData = response.data
-
-        // Sujungiam įrašyta email ir password su iš db gaunamomis roles
-        // Password iš serverio neteina, nes jis užšifruotas, todėl reikia daryti šį junginį
+        await api.post(
+          "/login",
+          new URLSearchParams({
+            username: email,
+            password: password,
+          }),
+          { withCredentials: true }
+        );
+      
+        // After login success, fetch user info from /auth (no params, session cookie used)
+        const response = await api.get("/auth", { withCredentials: true });
+        const userData = response.data;
+      
         const user = {
-            email,
-            password,
-            roles: userData.roles
-        }
-        // Įšsaugome user info į localStorage, tam kad vėliau galėtu pasiimti axios ir šis context'as
+          email,
+          roles: userData.roles,
+        };
+      
         localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
         navigate("/");
-    };
+      };
 
     const register = async (email, password) => {
         await api.post("/account", { email, password});
@@ -51,7 +55,7 @@ export const AuthProvider = ({ children }) => {
         // Ištrinam email ir password iš axios
         clearAuth();
         localStorage.removeItem("user");
-        navigate("/home");
+        navigate("/login");
     };
 
     return (

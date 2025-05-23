@@ -60,13 +60,15 @@ public class AccountController {
   }
 
   @GetMapping("/auth")
-  public ResponseEntity<AccountResponseDTO> login(@RequestParam String email, @RequestParam String password) {
-
-    Optional<Account> account = accountService.findByEmail(email);
-
-
-
-
-    return ResponseEntity.ok(AccountResponseMapper.toAccountResponseDTO(account.orElse(null)));
+  public ResponseEntity<?> getAuthenticatedUser(Authentication authentication) {
+    if (authentication == null || !authentication.isAuthenticated()) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+    String email = authentication.getName();
+    Account account = accountService.findByEmail(email);
+    if (account == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+    return ResponseEntity.ok(AccountResponseMapper.toAccountResponseDTO(account));
   }
 }

@@ -5,8 +5,6 @@ import com.api.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AccountService {
   private final AccountRepository accountRepository;
@@ -16,7 +14,7 @@ public class AccountService {
     this.accountRepository = accountRepository;
   }
 
-  public Optional<Account> findByEmail(String email) {
+  public Account findByEmail(String email) {
     return accountRepository.findByEmail(email);
   }
 
