@@ -12,6 +12,6 @@ public class Category {
   private String categoryName;
 
   public Category(String categoryName){
-    this.roleName = roleName;
+    this.categoryName = categoryName;
   }
 }
