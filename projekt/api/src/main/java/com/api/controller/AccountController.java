@@ -1,10 +1,9 @@
 package com.api.controller;
 
 
-import com.api.dto.AccountRequestDTO;
-import com.api.dto.AccountRequestMapper;
-import com.api.dto.AccountResponseDTO;
-import com.api.dto.AccountResponseMapper;
+import com.api.dto.AccauntDTO.AccountRequestDTO;
+import com.api.dto.AccauntDTO.AccountRequestMapper;
+import com.api.dto.AccauntDTO.AccountResponseMapper;
 import com.api.model.Account;
 import com.api.model.Role;
 import com.api.service.AccountService;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")

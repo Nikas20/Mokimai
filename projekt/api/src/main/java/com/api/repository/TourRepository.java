@@ -1,6 +1,12 @@
 package com.api.repository;
 
-public interface TourRepository {
 
+import com.api.model.Tour;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
+public interface TourRepository extends JpaRepository<Tour, Long> {
+
+  List<Tour> findAllById(long id);
 }
