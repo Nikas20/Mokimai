@@ -16,11 +16,14 @@ export const TourList = () => {
 
   return (
     <>
+    
+      <div className="bg-red-500 btn justify-center mt-1">
       <NavLink to={`/tour/add`}>Add</NavLink>
-
+</div>
       <ul>
-        {con}
+        
       </ul>
+      
     </>
   );
 };

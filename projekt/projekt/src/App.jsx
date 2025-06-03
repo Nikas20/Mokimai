@@ -7,7 +7,8 @@ import {AuthGuard} from "./components/AuthGuard.jsx";
 import {Login} from "./pages/auth/Login.jsx";
 import {Register} from "./pages/auth/Register.jsx";
 import {AuthProvider} from "./context/AuthContext.jsx";
-
+import { TourAdd } from "../src/pages/tour/TourAdd.jsx"
+import {TourList} from "../src/pages/tour/TourList.jsx";
 
 
 
@@ -29,6 +30,22 @@ const App = () => {
                   <AuthGuard>
                       <AuthProvider>
                           <MainLayout/>
+                      </AuthProvider>
+                  </AuthGuard>
+              }>
+              </Route>
+              <Route path={"/tour"} element={
+                  <AuthGuard>
+                      <AuthProvider>
+                          <TourList/>
+                      </AuthProvider>
+                  </AuthGuard>
+              }>
+              </Route>
+              <Route path={"/tour/add"} element={
+                  <AuthGuard>
+                      <AuthProvider>
+                          <TourAdd/>
                       </AuthProvider>
                   </AuthGuard>
               }>

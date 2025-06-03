@@ -51,17 +51,59 @@ return(
                 <fieldset className=" bg-[#97a0f1] fieldset w-xs border border-base-300 p-4 rounded-box">
                     <legend className="fieldset-legend pt-8">ServiceAdd</legend>
 
-                    <label className="fieldset-label"> Name </label>
-                    <input {...register("name", {
-                      required:"Name is required",
+                    <label className="fieldset-label"> Title </label>
+                    <input {...register("title", {
+                      required:"title is required",
                       minLength:3,
                       maxLength:150,
                       pattern:"^[A-Za-z0-9\s-]+$"
                     })} 
                       type="text" 
                     className="input focus:outline-[0px] focus:border-base-300" 
-                    placeholder="Enter name of service" />
-                    
+                    placeholder="Enter title of tour" />
+                    <label className="fieldset-label"> description </label>
+                    <input {...register("description", {
+                      required:"description is required",
+                      minLength:3,
+                      maxLength:150,
+                      pattern:"^[A-Za-z0-9\s-]+$"
+                    })} 
+                      type="text" 
+                    className="input focus:outline-[0px] focus:border-base-300" 
+                    placeholder="Enter description of tour" />
+
+<label className="fieldset-label"> photo_url </label>
+                    <input {...register("photo_url", {
+                      required:"photo_url is required",
+                      minLength:3,
+                      maxLength:150,
+                      pattern:"^[A-Za-z0-9\s-]+$"
+                    })} 
+                      type="text" 
+                    className="input focus:outline-[0px] focus:border-base-300" 
+                    placeholder="Enter photo_url of tour" />
+
+                    <label className="fieldset-label"> duration_minutes </label>
+                    <input {...register("duration_minutes", {
+                      required:"duration_minutes is required",
+                      minLength:3,
+                      maxLength:150,
+                      pattern:"^[A-Za-z0-9\s-]+$"
+                    })} 
+                      type="text" 
+                    className="input focus:outline-[0px] focus:border-base-300" 
+                    placeholder="Enter duration_minutes of tour" />
+
+<label className="fieldset-label"> price </label>
+                    <input {...register("price", {
+                      required:"price is required",
+                      minLength:3,
+                      maxLength:150,
+                      pattern:"^[A-Za-z0-9\s-]+$"
+                    })} 
+                      type="text" 
+                    className="input focus:outline-[0px] focus:border-base-300" 
+                    placeholder="Enter price of tour" />
 
                     <button type="submit" className="btn bg-black border-neutral-950 text-white hover:bg-white hover:text-neutral-950 mt-4">ServiceAdd</button>
 

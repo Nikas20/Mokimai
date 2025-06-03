@@ -7,7 +7,7 @@ export const MainLayout = () => {
     return (
         <div className="grid grid-rows-[5rem_1fr_5rem] h-screen">
             <nav className="navbar bg-primary text-primary-content">
-                <NavLink to="/pets" className="btn btn-ghost text-xl">Readery</NavLink>
+                <NavLink to="/tour" className="btn btn-ghost text-xl">Readery</NavLink>
                 <div className="flex-none hidden lg:flex">
                     <div className="flex items-stretch">
                         <button onClick={logout} className="btn btn-ghost">Logout</button>
