@@ -2,7 +2,7 @@ package com.api.controller;
 
 import com.api.dto.TourDTO.TourMapper;
 import com.api.dto.TourDTO.TourResponseDTO;
-import com.api.dto.TourDTO.ToutRequiestDTO;
+import com.api.dto.TourDTO.TourRequestDTO;
 import com.api.model.Tour;
 import com.api.service.TourService;
 import jakarta.validation.Valid;
@@ -31,13 +31,13 @@ public class TourController {
     }
 
     @PostMapping("/tour")
-    public ResponseEntity<?> addTour(@Valid @RequestBody ToutRequiestDTO toutRequiestDTO) {
+    public ResponseEntity<?> addTour(@Valid @RequestBody TourRequestDTO tourRequestDTO) {
         Tour tour = new Tour();
-        tour.setTitle(toutRequiestDTO.title());
-        tour.setDescription(toutRequiestDTO.description());
-        tour.setPhoto_url(toutRequiestDTO.photo_url());
-        tour.setDuration_minutes(toutRequiestDTO.duration_minutes());
-        tour.setPrice(toutRequiestDTO.price());
+        tour.setTitle(tourRequestDTO.title());
+        tour.setDescription(tourRequestDTO.description());
+        tour.setPhoto_url(tourRequestDTO.photo_url());
+        tour.setDuration_minutes(tourRequestDTO.duration_minutes());
+        tour.setPrice(tourRequestDTO.price());
         TourResponseDTO newTour = TourMapper.toTourDTO(tourService.saveTour(tour));
         return ResponseEntity.status(HttpStatus.CREATED).body(newTour);
     }

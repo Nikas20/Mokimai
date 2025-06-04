@@ -34,12 +34,12 @@ public class TourMapper {
                 .toList();
     }
 
-    public static Tour updatetoTourDTO(ToutRequiestDTO toutRequiestDTO, Tour tour) {
-        tour.setTitle(toutRequiestDTO.title());
-        tour.setDescription(toutRequiestDTO.description());
-        tour.setPhoto_url(toutRequiestDTO.photo_url());
-        tour.setDuration_minutes(toutRequiestDTO.duration_minutes());
-        tour.setPrice(toutRequiestDTO.price());
+    public static Tour updatetoTourDTO(TourRequestDTO tourRequestDTO, Tour tour) {
+        tour.setTitle(tourRequestDTO.title());
+        tour.setDescription(tourRequestDTO.description());
+        tour.setPhoto_url(tourRequestDTO.photo_url());
+        tour.setDuration_minutes(tourRequestDTO.duration_minutes());
+        tour.setPrice(tourRequestDTO.price());
 
         return tour;
     }

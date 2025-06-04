@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/account").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/auth").authenticated()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults());

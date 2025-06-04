@@ -1,5 +1,5 @@
 import api from '../api';
-const url = "http://localhost:8080/api/tour";
+const url = "/tour";
 export const addTour = (payload) => api.post(`${url}`, payload);
 
 export const updateTour = (Id, payload) =>

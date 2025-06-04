@@ -2,7 +2,7 @@ package com.api.dto.TourDTO;
 
 import java.math.BigDecimal;
 
-public record ToutRequiestDTO(
+public record TourRequestDTO(
         String title,
         String description,
         String photo_url,
