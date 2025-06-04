@@ -1,11 +1,8 @@
-package com.api.dto;
+package com.api.dto.AccauntDTO;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
-
-import java.util.List;
 
 public record AccountRequestDTO(
         @Email(regexp = "^[a-zA-Z0-9._%+-]{4,}@[a-zA-Z0-9.-]{3,}\\.[a-zA-Z]{2,}$",

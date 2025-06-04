@@ -3,12 +3,12 @@ import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router";
 //import {Navigate} from "react-router";
 import {MainLayout} from "./layouts/MainLayout.jsx";
-import {PetList} from "./pages/pets/PetList.jsx";
 import {AuthGuard} from "./components/AuthGuard.jsx";
 import {Login} from "./pages/auth/Login.jsx";
 import {Register} from "./pages/auth/Register.jsx";
 import {AuthProvider} from "./context/AuthContext.jsx";
-import {ViewPet} from "./pages/pets/ViewPet.jsx";
+import { TourAdd } from "../src/pages/tour/TourAdd.jsx"
+import {TourList} from "../src/pages/tour/TourList.jsx";
 
 
 
@@ -33,8 +33,22 @@ const App = () => {
                       </AuthProvider>
                   </AuthGuard>
               }>
-                  <Route path="pets" element={<PetList/>} />
-                  <Route path="pets/view/:id" element={<ViewPet />} />
+              </Route>
+              <Route path={"/tour"} element={
+                  <AuthGuard>
+                      <AuthProvider>
+                          <TourList/>
+                      </AuthProvider>
+                  </AuthGuard>
+              }>
+              </Route>
+              <Route path={"/tour/add"} element={
+                  <AuthGuard>
+                      <AuthProvider>
+                          <TourAdd/>
+                      </AuthProvider>
+                  </AuthGuard>
+              }>
               </Route>
           </Routes>
       </BrowserRouter>
