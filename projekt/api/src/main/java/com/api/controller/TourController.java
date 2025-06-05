@@ -6,6 +6,7 @@ import com.api.dto.TourDTO.TourRequestDTO;
 import com.api.model.Tour;
 import com.api.service.TourService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +50,14 @@ public class TourController {
         }
         tourService.deleteTourById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/pagination")
+    public Page<Tour> getPaginatedTours(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size,
+            @RequestParam(defaultValue = "id") String sort
+    ) {
+        return tourService.getPaginatedTours(page, size, sort);
     }
 }
