@@ -28,14 +28,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/account").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/auth").authenticated()
-                        .anyRequest().permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tour").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/tour").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults());
 
         return http.build();
     }
-
 
 
     @Bean
