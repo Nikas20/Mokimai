@@ -1,27 +1,45 @@
-import { NavLink } from "react-router";
-import { useAuth } from "../../context/AuthContext.jsx";
+import { useParams } from "react-router";
+import { useState, useEffect } from "react";
 import api from "../../utils/api.js";
 import { Error } from "../../components/Error.jsx";
-import { useState } from "react";
-import { usePagination } from "../../context/PaginationContext.jsx";
 
-export const TourCard = (props) => {
-    const {tour} = props;
-    const {id, title, description, photo_url, duration_minutes, price, max_participants, average_rating} = tour;
-    const [error, setError] = useState("");
-    const { account } = useAuth();
+export const TourCard = () => {
+  const { id } = useParams();
+  const [tour, setTour] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState();
 
-    return(
-        <div className="card card-side shadow-sm bg-[#6A7AFF] text-[#FFFFFF]">
-            <div className="card-body">
-            <h2 className="card-title block break-all">{title}</h2>
-            <p>{description}</p>
-            <p>{photo_url}</p>
-            <p>{duration_minutes}</p>
-            <p>{price}</p>
-            <p>{max_participants}</p>
-            <p>{average_rating}</p>
-            </div>
-        </div>
-    )
-}
+  useEffect(() => {
+    const fetchTour = async () => {
+      try {
+        setLoading(true);
+        const response = await api.get(`/tour/${id}`);
+        console.log(await api.get(`/tour/${id}`));
+        
+        setTour(response.data);
+      } catch (err) {
+        setError(err.response?.data || err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTour();
+  }, [id]);
+
+  if (loading) return <p>Loading tour...</p>;
+  if (error) return <Error message={error} />;
+  if (!tour) return <p>Tour not found</p>;
+
+  return (
+    <div className="card card-side shadow-sm bg-[#6A7AFF] text-[#FFFFFF] p-4">
+      <h2 className="card-title">{tour.title}</h2>
+      <p>{tour.description}</p>
+      <img src={tour.photo_url} alt={tour.title} />
+      <p>Duration: {tour.duration_minutes} minutes</p>
+      <p>Price: ${tour.price}</p>
+      <p>Max Participants: {tour.max_participants}</p>
+      <p>Average Rating: {tour.average_rating}</p>
+      {/* Add more details as needed */}
+    </div>
+  );
+};

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -22,13 +23,24 @@ public class TourController {
         this.tourService = tourService;
     }
 
-    @GetMapping("/tuor")
-    public ResponseEntity<?> getAllServices() {
-        List<Tour> allTuors = tourService.findAllTours();
-        if (allTuors.isEmpty()) {
+    @GetMapping("/tour")
+    public ResponseEntity<?> getAllTours() {
+        List<Tour> allTours = tourService.findAllTours();
+        if (allTours.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(TourMapper.toTourListDTO(allTuors));
+        return ResponseEntity.ok(TourMapper.toTourListDTO(allTours));
+    }
+
+    @GetMapping("/tour/{id}")
+    public ResponseEntity<?> getTour(@PathVariable long id) {
+        Optional<Tour> tour = tourService.findByIdTour(id);
+
+        if (tour.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tour not found");
+        }
+
+        return ResponseEntity.ok(TourMapper.toTourDTO(tour.get()));
     }
 
     @PostMapping("/tour")
