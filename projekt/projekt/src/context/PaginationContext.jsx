@@ -14,19 +14,15 @@ export const PaginationProvider = ({ children }) => {
   const [pageSize, setPageSize] = useState(6);
   const [error, setError] = useState();
   const [content, setContent] = useState([]);
-  const [currentPath, setCurrentPath] = useState()
   const location = useLocation();
 
-  const getPage = useCallback(async (size, page, sort) => {
-    const path = location.pathname;
-    const currentPath = path.split("/").pop();
-    setCurrentPath(currentPath);
+  // ✅ Extract path (e.g., "tour" from "/tour")
+  const currentPath = location.pathname.split("/").filter(Boolean)[0] ?? "";
 
+  const getPage = useCallback(async (size, page, sort) => {
     try {
       const response = await api.get(
-        `/${currentPath}/pagination?page=${page}&size=${size}${
-          sort ? `&sort=${sort}` : ""
-        }`
+        `/${currentPath}/pagination?page=${page}&size=${size}${sort ? `&sort=${sort}` : ""}`
       );
       const { content, totalPages } = response.data;
       setContent(content);
@@ -34,7 +30,7 @@ export const PaginationProvider = ({ children }) => {
     } catch (error) {
       setError(error.response?.data ?? error.message);
     }
-  }, [location.pathname]);
+  }, [currentPath]);
 
   const onPageSizeChange = (e) => {
     const pageSize = Math.max(1, parseInt(e.target.value, 10));
@@ -49,15 +45,25 @@ export const PaginationProvider = ({ children }) => {
 
   useEffect(() => {
     getPage(pageSize, currentPage);
-  }, [pageSize, currentPage, currentPath, getPage]);
+  }, [pageSize, currentPage, getPage]);
 
   return (
-  <PaginationContext.Provider
-    value={{ getPage, onPageSizeChange, onPaginate, error, setError, content, currentPage, totalPages, pageSize }}
-  >
-    {children}
-  </PaginationContext.Provider>
-  )
+    <PaginationContext.Provider
+      value={{
+        getPage,
+        onPageSizeChange,
+        onPaginate,
+        error,
+        setError,
+        content,
+        currentPage,
+        totalPages,
+        pageSize,
+      }}
+    >
+      {children}
+    </PaginationContext.Provider>
+  );
 };
 
 export const usePagination = () => {
