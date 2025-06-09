@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Optional<Account> foundAccount = Optional.ofNullable(accountService.findByEmail(email));
+    Optional<Account> foundAccount = accountService.findByEmail(email);
 
     if (foundAccount.isEmpty()) {
       throw new UsernameNotFoundException(email);
@@ -32,4 +32,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   }
 
 }
+
 

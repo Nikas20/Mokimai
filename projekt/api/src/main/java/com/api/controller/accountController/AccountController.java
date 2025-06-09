@@ -31,7 +31,7 @@ public class AccountController {
     this.passwordEncoder = passwordEncoder;
   }
 
-  @PostMapping("/account")
+  @PostMapping("/register")
   public ResponseEntity<?> addAccount(@Valid @RequestBody AccountRequestDTO accountRequestDTO, Authentication authentication) {
     if (authentication != null && authentication.isAuthenticated()) {
       return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You are already registered!");
@@ -40,14 +40,12 @@ public class AccountController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Account with this email already exists!");
     }
 
-    Account account = AccountRequestMapper.toAccount(accountRequestDTO);
-
-
-    account.setPassword(passwordEncoder.encode(account.getPassword()));
+    Account account = new Account();
+    account.setEmail(accountRequestDTO.email());
+    account.setPassword(passwordEncoder.encode(accountRequestDTO.password()));
     account.setRoles(List.of(new Role("USER", 1)));
 
     Account savedAccount = accountService.saveAccount(account);
-
 
     return ResponseEntity.created(
                     ServletUriComponentsBuilder.fromCurrentRequest()
@@ -56,26 +54,4 @@ public class AccountController {
                             .toUri())
             .body(AccountResponseMapper.toAccountResponseDTO(savedAccount));
   }
-
-  @GetMapping("/auth")
-  public ResponseEntity<?> getAuthenticatedUser(Authentication authentication) {
-    // Check if authentication is null or not authenticated
-    if (authentication == null || !authentication.isAuthenticated()) {
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }
-
-    // Get user email from authentication principal
-    String email = authentication.getName();
-
-    // Retrieve user account by email
-    Account account = accountService.findByEmail(email);
-
-    // If user not found, return 404
-    if (account == null) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-    }
-
-    // Return user data with 200 OK
-    return ResponseEntity.ok(AccountResponseMapper.toAccountResponseDTO(account));
   }
-}
