@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+
+/*UNIQUE COLORS USED//////////////////////////////////////////////////////// */
+/*WILL BE UPDATED AS PROJECT MOVES FORWARD////////////////////////////////// */
+
+/* Light Violet - COLOR used as lighter background for cards or boxes.
+ Example: Log In Page and Register Page card*/
+.bg-light-violet {
+  background-color: #97a0f1;
+}
+/* COLOR can be used in Tailwind code like this: <div className="flex bg-[#97a0f1] h-64 w-full">Content</div> */
+
+/* Default Violet - COLOR used as default background for cards or boxes.
+ Example: Cards in Service List Page */
+.bg-default-violet {
+  background-color: #6A7AFF;
+}
+/* COLOR can be used in Tailwind code like this: <div className="flex bg-[#6A7AFF] h-64 w-full">Content</div> */
+
+/* Light Orange - COLOR used as lighter orange background for cards or boxes.
+ Example: Not implemented yet */
+ .bg-light-orange {
+  background-color: #FFBD89;
+}
+/* COLOR can be used in Tailwind code like this: <div className="flex bg-[#FFBD89] h-64 w-full">Content</div> */
+
+/* Default Purple - COLOR used in Navigation bar, for "Login" button and "Logout" button.
+ Example: Cards in Log In Page and Register Page */
+ .bg-default-purple {
+  background-color: #ac64b4;
+}
+/* COLOR can be used in Tailwind code like this: <div className="flex bg-[#FFBD89] h-64 w-full">Content</div> */
+
+/* Light Gray - COLOR used as EXTRA FOR FUTURE USE.
+ Example: Not implemented yet. Have to check other KOM-?? branches if it is in use */
+ .bg-light-gray {
+  background-color: #CBC5C5;
+}
+/* COLOR can be used in Tailwind code like this: <div className="flex bg-[#FFBD89] h-64 w-full">Content</div> */
+
+/*FOR ALL PAGES//////////////////////////////////////////////////////// */
+
+
+html {
+  background-color: #DCDEFE;
+  font-family: 'Kiwi Maru', sans-serif;
+}
+
+/* Black button located in Login Page and Register Page */
+.custom-black-btn {
+  background-color: #000000;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 1.5rem;
+  transition: background-color 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-black-btn:hover {
+  background-color: #333;
+}
+
+/* Purple button to be used in Navigation bar, for "Login" button and "Logout" button */
+.custom-purple-btn {
+  background-color: #ac64b4;
+  color: #000000;
+  padding: 1rem;
+  width: 8.25rem; /* Adjusted width */
+  height: 2.9375rem; /* Adjusted height */
+  border-radius: 1.5rem;
+  transition: background-color 0.3s ease; 
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-purple-btn:hover {
+  background-color: #C7A4D6;
+}
+
+/* White button to be used inside boxes in the future */
+.custom-white-btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  padding: 1rem;
+  width: 8.25rem; /* Adjusted width */
+  height: 2.9375rem; /* Adjusted height */
+  border-radius: 1.5rem;
+  transition: background-color 0.3s ease;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-white-btn:hover {
+  background-color: #C7A4D6;
+}
+
+/*FOR NAVIGATION BAR TO USE IN FUTURE JUST IN CASE //////////////////////////////////////////////////////// */
+
+.paws-1 {
+  /* FIGMA paw logo on Navigation Bar */
+  /* paws 1 in FIGMA description */
+
+  position: absolute;
+  width: 117px;
+  height: 52px;
+  left: 63px;
+  top: 16px;
+  background: url("/src/assets/paws.png");
+}
+
+.middle-color-light-orange-login-button {
+  /* FIGMA Middle Color light Orange Log In button on Navigation Bar  */
+  /* Rectangle 76 in FIGMA description */
+  position: absolute;
+  width: 132px;
+  height: 47px;
+  left: 885px;
+  top: 22px;
+
+  /* Middle Color light Orange */
+  background: #FFBD89;
+  border-radius: 50px;
+}
+
+.main-color-orange-book-now-button {
+  /* FIGMA Main Color Orange Book Now button on Navigation Bar  */
+  /* Rectangle 77 in FIGMA description */
+  position: absolute;
+  width: 132px;
+  height: 47px;
+  right: 94px;
+  top: 22px;
+
+  /* Main Color Orange */
+  background: #F19A56;
+  border-radius: 50px;
+}
+
+/* //////////////////////////////////////////////////////////////////////// */
+
+/*FOR HOME PAGE //////////////////////////////////////////////////////// */
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; /* Align text to the left */
+  width: 60%; /* Occupy 60% of the available space */
+  padding-left: 20px; /* Add some padding on the left for spacing */
+}
+
+/* Base Paw Button */
+.custom-paw-left-btn,
+.custom-paw-right-btn {
+  width: 50px;  /* Adjust as needed */
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Hover and Click Effects */
+.custom-paw-left-btn:hover,
+.custom-paw-right-btn:hover {
+  transform: scale(1.1);
+}
+
+.custom-paw-left-btn:active,
+.custom-paw-right-btn:active {
+  transform: scale(0.9);
+}
+
+/* Left Paw Button */
+.custom-paw-left-btn {
+  background-image: url("/src/assets/pawss_3_left.png");
+}
+
+/* Right Paw Button */
+.custom-paw-right-btn {
+  background-image: url("/src/assets/pawss_4_right.png");
+}
+
+
+
+/* /////////////////////////////////////////////////////////////////////// */
