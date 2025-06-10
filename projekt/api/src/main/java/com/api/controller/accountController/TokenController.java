@@ -20,40 +20,39 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class TokenController {
 
-  private final JwtEncoder encoder;
-  private final AccountRepository accountRepository;
+    private final JwtEncoder encoder;
+    private final AccountRepository accountRepository;
 
-  @Autowired
-  public TokenController(JwtEncoder encoder, AccountRepository accountRepository) {
-    this.encoder = encoder;
-    this.accountRepository = accountRepository;
-  }
+    @Autowired
+    public TokenController(JwtEncoder encoder, AccountRepository accountRepository) {
+        this.encoder = encoder;
+        this.accountRepository = accountRepository;
+    }
 
-  @Operation(summary = "Generate a JWT token", description = "Generates a JWT token for a user with their basic auth")
-  @PostMapping("/token")
-  public String token(Authentication authentication) {
-    Instant now = Instant.now();
-    long expiry = 36000L;
+    @Operation(summary = "Generate a JWT token", description = "Generates a JWT token for a user with their basic auth")
+    @PostMapping("/token")
+    public String token(Authentication authentication) {
+        Instant now = Instant.now();
+        long expiry = 36000L;
 
-    String email = authentication.getName();
+        String email = authentication.getName();
 
-    Account account = accountRepository.findByEmail(email)
-            .orElseThrow(() -> new UsernameNotFoundException("Account not found!"));
+        Account account = accountRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Account not found!"));
 
-    String scope = authentication.getAuthorities().stream()
-            .map(s -> s.getAuthority())
-            .collect(Collectors.joining(" "));
+        String scope = authentication.getAuthorities().stream()
+                .map(s -> s.getAuthority())
+                .collect(Collectors.joining(" "));
 
-    JwtClaimsSet claims = JwtClaimsSet.builder()
-            .issuer("self")
-            .issuedAt(now)
-            .expiresAt(now.plusSeconds(expiry))
-            .subject(email)
-            .claim("account_id", account.getId())
-            .claim("scope", scope)
-            .build();
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .issuer("self")
+                .issuedAt(now)
+                .expiresAt(now.plusSeconds(expiry))
+                .subject(email)
+                .claim("account_id", account.getId())
+                .claim("scope", scope)
+                .build();
 
-    return encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-  }
+        return encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
 }
-
