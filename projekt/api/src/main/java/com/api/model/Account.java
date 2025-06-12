@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "account") // ✅ ИСПРАВЛЕНО: должно соответствовать имени таблицы в БД
 public class Account implements UserDetails {
 
     @Id
@@ -27,13 +27,12 @@ public class Account implements UserDetails {
     )
     private List<Role> roles = new ArrayList<>();
 
+    public Account() {}
+
     public Account(String email, String password, List<Role> roles) {
         this.email = email;
         this.password = password;
         this.roles = roles;
-    }
-
-    public Account() {
     }
 
     public long getId() {
@@ -78,5 +77,25 @@ public class Account implements UserDetails {
     public String getUsername() {
         return this.email;
     }
-}
 
+    // ✅ ДОБАВЬ ЭТИ ОБЯЗАТЕЛЬНЫЕ МЕТОДЫ
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+}
