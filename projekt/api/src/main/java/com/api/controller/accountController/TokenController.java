@@ -1,5 +1,7 @@
 package com.api.controller.accountController;
 
+
+import com.api.controller.BaseController;
 import com.api.model.Account;
 import com.api.repository.AccountRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-public class TokenController {
+public class TokenController extends BaseController {
 
     private final JwtEncoder encoder;
     private final AccountRepository accountRepository;

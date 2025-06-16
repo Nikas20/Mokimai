@@ -12,7 +12,7 @@ export const Login = () => {
     const onSubmit = async (data) => {
         try {
             await login(data.email, data.password);
-            console.log(await login(data.email, data.password));
+            console.log(data.email);
             
         } catch (error) {
             if (error.response.status === 401) {

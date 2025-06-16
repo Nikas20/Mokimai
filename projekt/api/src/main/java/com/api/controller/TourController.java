@@ -56,20 +56,46 @@ public class TourController {
     }
 
     @DeleteMapping("/tour/{id}")
-    public ResponseEntity<?> deleteTour(@PathVariable long id) {
+    public ResponseEntity<?> deleteTour(@PathVariable Long id) {
         if (!tourService.existByID(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tour not found");
         }
+
         tourService.deleteTourById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/pagination")
-    public Page<Tour> getPaginatedTours(
+    @PutMapping("/tour/{Id}")
+    public ResponseEntity<?> updateTour(@PathVariable long Id,
+                                        @Valid @RequestBody TourRequestDTO tourRequestDTO) {
+        if (Id < 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tour ID cannot be negative");
+        }
+
+        Optional<Tour> tourOpt = tourService.findByIdTour(Id);
+
+        if (tourOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tour not found");
+        }
+
+        Tour tourFromDB = tourOpt.get();
+        Tour updatedTour = TourMapper.updateTourDTO(tourRequestDTO, tourFromDB);
+
+        tourService.saveTour(updatedTour);
+
+        return ResponseEntity.ok(TourMapper.toTourDTO(updatedTour));
+    }
+
+
+    @GetMapping("/tour/pagination")
+    public ResponseEntity<Page<TourResponseDTO>> getPaginatedTours(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "6") int size,
             @RequestParam(defaultValue = "id") String sort
     ) {
-        return tourService.getPaginatedTours(page, size, sort);
+        Page<Tour> tourPage = tourService.getPaginatedTours(page, size, sort);
+        Page<TourResponseDTO> dtoPage = tourPage.map(TourMapper::toTourDTO);
+        return ResponseEntity.ok(dtoPage);
     }
+
 }

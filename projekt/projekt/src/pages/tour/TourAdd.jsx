@@ -19,11 +19,14 @@ export const TourAdd = () => {
     setIsLoading(true);
     setSubmitError(null);
 
-    const trimmedData = {
-      title: data.title.trim()
-    };
+    const payload = {
+    title: data.title.trim(),
+    description: data.description.trim(),
+    photo_url: data.photo_url.trim(),
+    duration_minutes: parseInt(data.duration_minutes),
+    price: parseFloat(data.price),
+  };
 
-    const payload = { ...trimmedData };
 
     try {
       let response1;
@@ -37,6 +40,7 @@ export const TourAdd = () => {
         duration_minutes: "",
         price: "",
       });
+      navigate("/tour");
     } catch (error) {
       setSubmitError(error.response?.data?.message || error.message);
     } finally {

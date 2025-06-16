@@ -21,13 +21,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Account account = accountService.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+        Optional<Account> foundAccount = accountService.findByEmail(email);
 
-        return User.builder()
-                .username(account.getEmail())
-                .password(account.getPassword()) // Хэшированный пароль
-                .roles("USER") // Или account.getRole(), если у тебя есть поле
-                .build();
+        if (foundAccount.isEmpty()) {
+            throw new UsernameNotFoundException(email);
+        }
+
+        return foundAccount.get();
     }
+
 }
