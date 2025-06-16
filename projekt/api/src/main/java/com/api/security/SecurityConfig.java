@@ -85,6 +85,11 @@ public class SecurityConfig {
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/register").anonymous()
+                        .requestMatchers(HttpMethod.DELETE, "/api/tour/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/tour/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tour/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/tour").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tour/pagination").permitAll()
                         .requestMatchers("/error/**").permitAll()
                         .requestMatchers(
                                 "/api-docs",

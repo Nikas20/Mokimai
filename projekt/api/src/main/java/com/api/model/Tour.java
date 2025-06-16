@@ -105,4 +105,12 @@ public class Tour {
   public void setAverage_rating(BigDecimal average_rating) {
     this.average_rating = average_rating;
   }
+
+  public List<Category> getCategory() {
+    return category;
+  }
+
+  public void setCategory(List<Category> category) {
+    this.category = category;
+  }
 }

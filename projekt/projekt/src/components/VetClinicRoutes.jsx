@@ -7,7 +7,7 @@ import { Login } from "../pages/auth/Login.jsx";
 import { Register } from "../pages/auth/Register.jsx";
 import { TourAdd } from "../pages/tour/TourAdd.jsx";
 import {TourList} from "../pages/tour/TourList.jsx";
-import {TourCard} from "../pages/tour/TourCard.jsx";
+import {TourEdit} from "../pages/tour/TourEdit.jsx";
 const VetClinicRoutes = () => {
   return (
     <BrowserRouter>
@@ -25,10 +25,10 @@ const VetClinicRoutes = () => {
               </PaginationProvider>
               </AuthGuard>
               }/>
-
+            
 
             <Route path={"/tour/add"} element={<TourAdd />}/>
-            <Route path={"/tour/:id"} element={<TourCard />}/>
+            <Route path={"/tour/edit/:id"} element={<TourEdit />}/>
           </Routes>
     </AuthProvider>      
     </BrowserRouter>

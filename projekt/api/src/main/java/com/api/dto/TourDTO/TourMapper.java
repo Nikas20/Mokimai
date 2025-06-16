@@ -34,7 +34,9 @@ public class TourMapper {
                 .toList();
     }
 
-    public static Tour updatetoTourDTO(TourRequestDTO tourRequestDTO, Tour tour) {
+
+
+    public static Tour updateTourDTO(TourRequestDTO tourRequestDTO, Tour tour) {
         tour.setTitle(tourRequestDTO.title());
         tour.setDescription(tourRequestDTO.description());
         tour.setPhoto_url(tourRequestDTO.photo_url());
