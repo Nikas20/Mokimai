@@ -9,7 +9,8 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "account") // ✅ ИСПРАВЛЕНО: должно соответствовать имени таблицы в БД
+@Table(name = "account")
+
 public class Account implements UserDetails {
 
     @Id
@@ -77,8 +78,6 @@ public class Account implements UserDetails {
     public String getUsername() {
         return this.email;
     }
-
-    // ✅ ДОБАВЬ ЭТИ ОБЯЗАТЕЛЬНЫЕ МЕТОДЫ
     @Override
     public boolean isAccountNonExpired() {
         return true;
