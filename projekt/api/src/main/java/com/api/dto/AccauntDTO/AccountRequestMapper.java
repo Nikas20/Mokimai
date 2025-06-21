@@ -1,6 +1,6 @@
 package com.api.dto.AccauntDTO;
 
-import com.api.model.Account;
+import com.api.model.account.Account;
 
 public class AccountRequestMapper {
 

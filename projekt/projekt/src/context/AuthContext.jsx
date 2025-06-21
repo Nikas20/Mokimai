@@ -42,19 +42,21 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const response = await api.post(
-      "/token",
-      {},
-      {
-        auth: { username: email, password },
-      }
-    );
-    const jwt = response.data;
-    localStorage.setItem("jwt", jwt);
-    setAccount(jwtDecode(jwt));
-    setAuth(jwt);
-    navigate("/");
-  };
+  const response = await api.post(
+    "/token",
+    {},
+    {
+      auth: { username: email, password }, // ← допустимо, если сервер принимает Basic для логина
+    }
+  );
+  const jwt = response.data;
+  localStorage.setItem("jwt", jwt);
+  console.log(jwt);
+  
+  setAccount(jwtDecode(jwt));
+  setAuth(jwt); // ← теперь корректно
+  navigate("/");
+};
 
   const register = async (
     email,

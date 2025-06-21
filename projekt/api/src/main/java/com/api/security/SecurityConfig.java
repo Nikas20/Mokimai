@@ -19,6 +19,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.*;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.web.*;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
@@ -78,7 +80,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
-                .oauth2ResourceServer(o -> o.jwt(Customizer.withDefaults()))
+                .oauth2ResourceServer(o -> o
+                        .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                )
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(e -> e
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
@@ -87,12 +91,27 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers(HttpMethod.POST, "/api/register").anonymous()
-                        .requestMatchers(HttpMethod.DELETE, "/api/tour/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/tour/**").permitAll()
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/tour/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/tour/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/tour/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/tour").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/tour").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.GET, "/api/tour/pagination").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tour/pagination").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tour/search").permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/api/bookings").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/bookings").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/bookings/*/confirm").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/bookings/*/change-date").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/bookings/**").hasRole("USER")
+
+                        .requestMatchers(HttpMethod.POST, "/api/feedback").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/feedback").permitAll()
+
                         .requestMatchers("/error/**").permitAll()
+
                         .requestMatchers(
                                 "/api-docs",
                                 "/v3/api-docs/**",
@@ -102,6 +121,7 @@ public class SecurityConfig {
                                 "/api-docs/swagger-config",
                                 "/api-docs.yaml"
                         ).permitAll()
+
                         .anyRequest().authenticated());
 
         return http.build();
@@ -138,4 +158,20 @@ public class SecurityConfig {
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwks);
     }
+<<<<<<< HEAD
 }
+=======
+
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        grantedAuthoritiesConverter.setAuthorityPrefix(""); // важно!
+        grantedAuthoritiesConverter.setAuthoritiesClaimName("scope"); // считывает из "scope"
+
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+
+        return jwtAuthenticationConverter;
+    }
+}
+>>>>>>> e2acf5a (crud)

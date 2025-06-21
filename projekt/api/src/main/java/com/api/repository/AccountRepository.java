@@ -1,7 +1,7 @@
 package com.api.repository;
 
 
-import com.api.model.Account;
+import com.api.model.account.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

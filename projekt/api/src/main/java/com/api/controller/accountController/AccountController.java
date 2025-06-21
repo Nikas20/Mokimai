@@ -2,10 +2,9 @@ package com.api.controller.accountController;
 
 
 import com.api.dto.AccauntDTO.AccountRequestDTO;
-import com.api.dto.AccauntDTO.AccountRequestMapper;
 import com.api.dto.AccauntDTO.AccountResponseMapper;
-import com.api.model.Account;
-import com.api.model.Role;
+import com.api.model.account.Account;
+import com.api.model.account.Role;
 import com.api.service.AccountService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

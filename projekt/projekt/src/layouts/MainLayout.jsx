@@ -1,19 +1,14 @@
-import {NavLink, Outlet} from "react-router";
-import {useAuth} from "../context/AuthContext.jsx";
+import {Outlet} from "react-router";
+import { Navbar } from "../components/NavBar.jsx";
 
 export const MainLayout = () => {
-    const { logout } = useAuth();
+
 
     return (
         <div className="grid grid-rows-[5rem_1fr_5rem] h-screen">
-            <nav className="navbar bg-primary text-primary-content">
-                <NavLink to="/tour" className="btn btn-ghost text-xl">Readery</NavLink>
-                <div className="flex-none hidden lg:flex">
-                    <div className="flex items-stretch">
-                        <button onClick={logout} className="btn btn-ghost">Logout</button>
-                    </div>
-                </div>
-            </nav>
+             <header className="pb-1 relative">
+                <Navbar/>
+            </header>
             <main>
                 <Outlet />
             </main>

@@ -1,6 +1,6 @@
 package com.api.service;
 
-import com.api.model.Account;
+import com.api.model.account.Account;
 import com.api.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

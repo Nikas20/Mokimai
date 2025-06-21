@@ -12,7 +12,6 @@ export const AuthGuard = (props) => {
     return <>{children}</>;
 };
 
-//PropTypes validation
 AuthGuard.propTypes = {
     children: PropTypes.node.isRequired,
 };

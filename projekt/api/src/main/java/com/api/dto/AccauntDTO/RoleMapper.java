@@ -1,7 +1,7 @@
 package com.api.dto.AccauntDTO;
 
-import com.api.model.Account;
-import com.api.model.Role;
+import com.api.model.account.Account;
+import com.api.model.account.Role;
 
 import java.util.List;
 

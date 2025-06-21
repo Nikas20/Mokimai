@@ -2,7 +2,7 @@ package com.api.controller.accountController;
 
 
 import com.api.controller.BaseController;
-import com.api.model.Account;
+import com.api.model.account.Account;
 import com.api.repository.AccountRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;

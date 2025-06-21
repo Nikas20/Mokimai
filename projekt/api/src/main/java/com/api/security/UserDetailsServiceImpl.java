@@ -1,6 +1,6 @@
 package com.api.security;
 
-import com.api.model.Account;
+import com.api.model.account.Account;
 import com.api.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
